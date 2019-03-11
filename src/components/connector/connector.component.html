@@ -1,0 +1,19 @@
+<div class="connector">
+    <div class="title">
+        <span>{{name}} Session {{session_id}}</span>
+        <span [class.connected]="status=='connected'" [class.disconnected]="status=='disconnected'">{{status}}</span>
+    </div>
+    <div class="connector-content">
+        <div>
+            <div>{{channel}}</div>
+            <div class="send-box">
+                <textarea [(ngModel)]="send_message"></textarea>
+                <button (click)="send(channel, send_message)">Send</button>
+            </div>
+        </div>
+        <div class="receive-box">
+            <div>Received</div>
+            <textarea [(ngModel)]="received_message"></textarea>
+        </div>
+    </div>
+</div>

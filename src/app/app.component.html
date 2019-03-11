@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
+<!-- <div style="text-align:center">
   <h1>
     Welcome to {{ title }}!
   </h1>
@@ -16,6 +16,48 @@
   <li>
     <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
   </li>
-</ul>
+</ul> -->
+
+<div class="options-container">
+  <div class="options-title">
+    Options
+  </div>
+  <div class="options-content">
+    <div class="options-line">
+      <span class="option-field">
+        <span class="option-field-label">Connector Type</span>
+        <select style="width: 200px;" (change)="onConnectionTypeChanged()" [(ngModel)]="connector_type">
+          <option value=""></option>
+          <option value="sockjs">SockJS</option>
+          <option value="websocket">WebSocket</option>
+        </select>
+      </span>
+
+      <span class="option-field">
+        <span class="option-field-label">Url:</span>
+        <input type="text" style="width: 500px;" [(ngModel)]="url" />
+      </span>
+
+      <span class="option-field">
+        <span class="option-field-label">Channel</span>
+        <input type="text" style="width: 300px;" [(ngModel)]="channel" />
+      </span>
+    </div>
+    <div class="options-line">
+      <span class="option-field">
+        <span class="option-field-label">Sessions</span>
+        <input type="number" [(ngModel)]="connector_count" />
+      </span>
+      <button class="action-button" (click)="createAll()">Create All</button>
+      <button class="action-button" (click)="connectAll()">Connect All</button>
+      <button class="action-button" (click)="disconnectAll()">Disconnect All</button>
+    </div>
+  </div>
+</div>
+<div class="connectors">
+  <div *ngFor="let option of connector_options">
+    <stomp-connector #connector protocol="{{option.connector_type}}" url="{{option.url}}" session_id={{option.session_id}} channel="{{option.channel}}"></stomp-connector>
+  </div>
+</div>
 
 <router-outlet></router-outlet>

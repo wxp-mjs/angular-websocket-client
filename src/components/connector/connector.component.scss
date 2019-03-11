@@ -1,0 +1,36 @@
+.connector {
+    border: 1px solid black;
+    margin: 2px 2px 2px 2px;
+    min-width: 300px;
+
+    .title {
+        height: 30px;
+        padding: 5px 10px 5px 10px;
+        font-weight: bold;
+        border-bottom: 1px solid black;
+        display: flex;
+        justify-content: space-between;
+    
+        .disconnected {
+            color: red;
+        }
+        
+        .connected {
+            color: green;
+        }
+    }
+    
+    .connector-content {
+        padding: 5px 5px 5px 5px;
+    
+        .send-box {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .receive-box {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}

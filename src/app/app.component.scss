@@ -1,0 +1,41 @@
+.options-container {
+    width: 99%;
+    margin: 10px 10px 5px 8px;
+    border: 1px solid black;
+
+    .options-title {
+        height: 30px;
+        padding: 5px 0px 5px 10px;
+        font-weight: bold;
+        border-bottom: 1px solid black;
+    }
+
+    .options-content {
+        padding: 5px 10px 5px 10px;
+
+        .options-line {
+            line-height: 2em;
+        }
+    
+        .option-field {
+            margin-right: 20px;
+        }
+    
+        .option-field-label {
+            margin-right: 10px;
+        }
+
+        .action-button {
+            margin: 0px 10px 0px 0px;
+            width: 150px;
+        }
+    }
+}
+
+.connectors {
+    width: 99%;
+    margin: 10px 10px 5px 8px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
