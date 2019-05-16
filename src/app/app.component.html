@@ -56,7 +56,7 @@
 </div>
 <div class="connectors">
   <div *ngFor="let option of connector_options">
-    <stomp-connector #connector protocol="{{option.connector_type}}" url="{{option.url}}" session_id={{option.session_id}} channel="{{option.channel}}"></stomp-connector>
+    <stomp-connector #connector [protocol]=option.connector_type [url]=option.url [session_id]=option.session_id [channel]=option.channel [useSockJS]=option.useSockJS></stomp-connector>
   </div>
 </div>
 

@@ -18,57 +18,57 @@ export class StompConnector extends Connector {
 
     connect() {
         this.received_message = 'connect';
-        // var ws = null;
-        // if (this.useSockJS) {
-        //     ws = new SockJS(this.url, null, {
-        //         sessionId: Number(this.session_id)
-        //     });
-        // } else {
-        //     ws = new WebSocket(this.url);
-        // }
+        var ws = null;
+        if (this.useSockJS) {
+            ws = new SockJS(this.url, null, {
+                sessionId: Number(this.session_id)
+            });
+        } else {
+            ws = new WebSocket(this.url);
+        }
 
-        // const self = this;
+        const self = this;
 
-        // this.stomp = Stomp.over(ws);
-        // if (this.useSockJS) {
-        //     this.stomp.heartbeat.incoming = 10000;
-        //     this.stomp.heartbeat.outgoing = 10000;
-        // }
+        this.stomp = Stomp.over(ws);
+        if (this.useSockJS) {
+            this.stomp.heartbeat.incoming = 10000;
+            this.stomp.heartbeat.outgoing = 10000;
+        }
 
-        // this.stomp.connect({}, 
-        //     (frame) => { // connected event
-        //         self.status = 'connected';
+        this.stomp.connect({}, 
+            (frame) => { // connected event
+                self.status = 'connected';
 
-        //         if (self.channel) {
-        //             self.stomp.subscribe(self.channel, 
-        //                 function (frame) {
-        //                     self.received_message = JSON.stringify(frame.body);
-        //                 },
-        //                 {});
-        //         } 
-        //         self.stomp.subscribe('')
-        //     }, 
-        //     (err) => { // error event
-        //         self.status = 'disconnected';
-        //         self.received_message = JSON.stringify(err);
-        //     },
-        //     (event) => { // close event
-        //         self.status = 'disconnected';
-        //     });
+                if (self.channel) {
+                    self.stomp.subscribe(self.channel, 
+                        function (frame) {
+                            self.received_message = JSON.stringify(frame.body);
+                        },
+                        {});
+                } 
+                self.stomp.subscribe('')
+            }, 
+            (err) => { // error event
+                self.status = 'disconnected';
+                self.received_message = JSON.stringify(err);
+            },
+            (event) => { // close event
+                self.status = 'disconnected';
+            });
     }
 
     disconnect() {
-        this.received_message = 'disconnect';
-        // if (this.stomp) {
-        //     this.stomp.disconnect();
-        // }
-        // this.status = 'disconnected';
+        // this.received_message = 'disconnect';
+        if (this.stomp) {
+            this.stomp.disconnect();
+        }
+        this.status = 'disconnected';
     }
 
     send(channel: string, msg: string) {
-        this.received_message = 'send';
-        // if (this.stomp) {
-        //     this.stomp.send(channel, {}, msg);
-        // }
+        // this.received_message = 'send';
+        if (this.stomp) {
+            this.stomp.send(channel, {}, msg);
+        }
     }
 }

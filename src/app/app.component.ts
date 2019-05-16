@@ -10,7 +10,7 @@ export class AppComponent {
   @Input() connector_type: string;
   @Input() url: string;
   @Input() channel: string;
-  @Input() connector_count: number = 0;
+  @Input() connector_count: number = 1;
   @Input() connector_options: any[] = [];
 
   @ViewChildren('connector')
@@ -20,9 +20,15 @@ export class AppComponent {
 
   createAll() {
     this.connector_options = [];
+    var isSockJS = false;
+    if (this.connector_type === 'sockjs') {
+      isSockJS = true;
+    }
+
     for (var i = 0; i < this.connector_count; i++) {
       var option = {
         url: this.url,
+        useSockJS: isSockJS,
         session_id: i,
         channel: this.channel
       };
